@@ -13,7 +13,7 @@ Concepts explored in this project:
   - State spaces
 
 ## Getting Started
-To view the project, open `smartcab.html` in a web browser.
+To view the project, open `report.html` in a web browser.
 
 To view the GUI and watch the cab learn over time (takes a while), navigate to the top directory and execute the following command:
 
