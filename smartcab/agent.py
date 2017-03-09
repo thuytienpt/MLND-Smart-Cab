@@ -126,7 +126,14 @@ class LearningAgent(Agent):
             if rand <= self.epsilon:
                 action = random.choice(self.valid_actions)
             else:
-                action = max(self.Q[state].iteritems(), key=itemgetter(1))[0]
+                maxQ = self.get_maxQ(state)
+                action_choices = []
+
+                for action in self.valid_actions:
+                    if self.Q[state][action] == maxQ:
+                        action_choices.append(action)
+
+                action = random.choice(action_choices)
 
         return action
 
@@ -196,14 +203,14 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, display=False, update_delay=0.01, log_metrics=True, optimized=True)
+    sim = Simulator(env, display=True, update_delay=2.0, log_metrics=False, optimized=True)
 
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=50)
+    sim.run(n_test=10)
 
 
 if __name__ == '__main__':
